@@ -68,9 +68,9 @@ To train the model with your desired parameters, you need to modify changes in t
 2. Type: ./main.py and press Enter
 
 # Create the latent space
-1. Open a jupyter notebook
+1. Open a jupyter notebook and add these lines to a cell 
 
-Add these lines to a cell 
+
 
 
 	import os
@@ -100,7 +100,9 @@ Add these lines to a cell
 	
 	%matplotlib inline
 
-
+2. Open a jupyter notebook and add these lines to a cell
+   
+	#-----protein name-----#
  	protein="trpcage"
 	PROTEIN="TRPCAGE"
 	
@@ -118,11 +120,11 @@ Add these lines to a cell
 	#-----Scale the distances-----#
 	data_scaled=scaler.fit_transform(data)
 
-
+	#-----Convert numpy array to pytorch tensor-----#
 	full_data_tensor = torch.from_numpy(data_scaled.astype(np.float32))
 	full_loader = DataLoader(full_data_tensor, batch_size=len(data_scaled), shuffle=False)	
 	
-	
+	#-----Load the model parameters-----#
 	args=pickle.load(open("args.pkl", "rb"))
 	
 	#-----Create an instance of the dense_gmvae class-----#
