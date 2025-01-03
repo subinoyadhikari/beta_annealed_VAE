@@ -1,6 +1,10 @@
 # β Annealed VAE
 To train the model with your desired parameters, you need to modify changes in the "main.py" file for both VAE and annealed VAE directories
 
+# Packages required
+1. torch==2.2.2
+2. scikit-learn==1.4.2
+3. numpy==1.24.3
 
   # Protein
 	protein="trpcage" # this is the name of the system and will be used for naming the filenames later
