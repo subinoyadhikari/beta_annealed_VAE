@@ -68,10 +68,7 @@ To train the model with your desired parameters, you need to modify changes in t
 2. Type: ./main.py and press Enter
 
 # Create the latent space
-1. Open a jupyter notebook and add these lines to a cell 
-
-
-
+Open a jupyter notebook and add these lines to a cell 
 
 	import os
 	import sys
