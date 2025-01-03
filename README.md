@@ -72,33 +72,33 @@ To train the model with your desired parameters, you need to modify changes in t
 
 Add these lines to a cell 
 
-1. 
-import os
-import sys
-import math
-import time
-import torch
-import random
-import pickle
-import shutil
-import argparse
-import numpy as np
-from train_vae import *
-from torch import nn, optim
-import torch.nn.init as init
-import matplotlib.pyplot as plt
-from sklearn.manifold import TSNE
-from sklearn.cluster import KMeans
-from torch.nn import functional as F
-from sklearn.decomposition import PCA
-from humanfriendly import format_timespan
-from torch.utils.data import DataLoader, TensorDataset
-from torch.utils.data.sampler import SubsetRandomSampler
-from sklearn.preprocessing import MinMaxScaler, StandardScaler, Normalizer
-from sklearn.metrics import silhouette_score, calinski_harabasz_score, davies_bouldin_score,\
-adjusted_rand_score, normalized_mutual_info_score
 
-%matplotlib inline
+	import os
+	import sys
+	import math
+	import time
+	import torch
+	import random
+	import pickle
+	import shutil
+	import argparse
+	import numpy as np
+	from train_vae import *
+	from torch import nn, optim
+	import torch.nn.init as init
+	import matplotlib.pyplot as plt
+	from sklearn.manifold import TSNE
+	from sklearn.cluster import KMeans
+	from torch.nn import functional as F
+	from sklearn.decomposition import PCA
+	from humanfriendly import format_timespan
+	from torch.utils.data import DataLoader, TensorDataset
+	from torch.utils.data.sampler import SubsetRandomSampler
+	from sklearn.preprocessing import MinMaxScaler, StandardScaler, Normalizer
+	from sklearn.metrics import silhouette_score, calinski_harabasz_score, davies_bouldin_score,\
+	adjusted_rand_score, normalized_mutual_info_score
+	
+	%matplotlib inline
 
 2. 
 protein="trpcage"
