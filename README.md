@@ -100,7 +100,7 @@ Add these lines to a cell
 	
 	%matplotlib inline
 
-2.
+
  	protein="trpcage"
 	PROTEIN="TRPCAGE"
 	
@@ -110,7 +110,7 @@ Add these lines to a cell
 	#-----Load the training and testing data-----#
 	file_name = f"{protein}_distance.npy" # This contains the full dataset
 
-3. 
+
 	#-----Scale the data-----#
 	scaler=Normalizer()
 	#-----Load the distances-----#
@@ -118,24 +118,24 @@ Add these lines to a cell
 	#-----Scale the distances-----#
 	data_scaled=scaler.fit_transform(data)
 
-4. 
-full_data_tensor = torch.from_numpy(data_scaled.astype(np.float32))
-full_loader = DataLoader(full_data_tensor, batch_size=len(data_scaled), shuffle=False)	
 
-5. 
-args=pickle.load(open("args.pkl", "rb"))
-
-#-----Create an instance of the dense_gmvae class-----#
-model = dense_vae(args)
-
-#-----Load the saved model state dict-----#
-model.network.load_state_dict(torch.load(args['model_name']))
-
-6. 
-saving_filename=f"latent_"+str(args['latent_dim'])+"_"+args['model_name'][15:-4]
-
-7. 
-#-----Create the latent data (mean vector)-----#
-full_features = model.compute_latent(full_loader)[0]
-np.save(f"latent_data_{saving_filename}.npy", full_features)
+	full_data_tensor = torch.from_numpy(data_scaled.astype(np.float32))
+	full_loader = DataLoader(full_data_tensor, batch_size=len(data_scaled), shuffle=False)	
+	
+	
+	args=pickle.load(open("args.pkl", "rb"))
+	
+	#-----Create an instance of the dense_gmvae class-----#
+	model = dense_vae(args)
+	
+	#-----Load the saved model state dict-----#
+	model.network.load_state_dict(torch.load(args['model_name']))
+	
+	#-----Saving filename-----#
+	saving_filename=f"latent_"+str(args['latent_dim'])+"_"+args['model_name'][15:-4]
+	
+	 
+	#-----Create the latent data (mean vector)-----#
+	full_features = model.compute_latent(full_loader)[0]
+	np.save(f"latent_data_{saving_filename}.npy", full_features)
 
