@@ -63,3 +63,78 @@ To train the model with your desired parameters, you need to modify changes in t
 	#-----Load the training and testing data-----#
 	train_data=np.load(path_to_file+f"X_train_{protein}.npy")
 	test_data=np.load(path_to_file+f"X_test_{protein}.npy")
+# Train the model
+1. Open a terminal and activate the conda environment that has pytorch
+2. Type: ./main.py and press Enter
+
+# Create the latent space
+1. Open a jupyter notebook
+
+Add these lines to a cell 
+[1]
+import os
+import sys
+import math
+import time
+import torch
+import random
+import pickle
+import shutil
+import argparse
+import numpy as np
+from train_vae import *
+from torch import nn, optim
+import torch.nn.init as init
+import matplotlib.pyplot as plt
+from sklearn.manifold import TSNE
+from sklearn.cluster import KMeans
+from torch.nn import functional as F
+from sklearn.decomposition import PCA
+from humanfriendly import format_timespan
+from torch.utils.data import DataLoader, TensorDataset
+from torch.utils.data.sampler import SubsetRandomSampler
+from sklearn.preprocessing import MinMaxScaler, StandardScaler, Normalizer
+from sklearn.metrics import silhouette_score, calinski_harabasz_score, davies_bouldin_score,\
+adjusted_rand_score, normalized_mutual_info_score
+
+%matplotlib inline
+
+[2]
+protein="trpcage"
+PROTEIN="TRPCAGE"
+
+#-----Path to training and testing data-----#
+path_to_file = f"/home/data/STANDARD_TRAJECTORIES/DISTANCE_{PROTEIN}/"	
+
+#-----Load the training and testing data-----#
+file_name = f"{protein}_distance.npy" # This contains the full dataset
+
+[3]
+#-----Scale the data-----#
+scaler=Normalizer()
+#-----Load the distances-----#
+data=np.load(f"{path_to_file}{file_name}")
+#-----Scale the distances-----#
+data_scaled=scaler.fit_transform(data)
+
+[4]
+full_data_tensor = torch.from_numpy(data_scaled.astype(np.float32))
+full_loader = DataLoader(full_data_tensor, batch_size=len(data_scaled), shuffle=False)	
+
+[5]
+args=pickle.load(open("args.pkl", "rb"))
+
+#-----Create an instance of the dense_gmvae class-----#
+model = dense_vae(args)
+
+#-----Load the saved model state dict-----#
+model.network.load_state_dict(torch.load(args['model_name']))
+
+[6]
+saving_filename=f"latent_"+str(args['latent_dim'])+"_"+args['model_name'][15:-4]
+
+[7]
+#-----Create the latent data (mean vector)-----#
+full_features = model.compute_latent(full_loader)[0]
+np.save(f"latent_data_{saving_filename}.npy", full_features)
+
