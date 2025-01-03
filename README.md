@@ -100,15 +100,14 @@ Add these lines to a cell
 	
 	%matplotlib inline
 
-2. 
-protein="trpcage"
-PROTEIN="TRPCAGE"
-
-#-----Path to training and testing data-----#
-path_to_file = f"/home/data/STANDARD_TRAJECTORIES/DISTANCE_{PROTEIN}/"	
-
-#-----Load the training and testing data-----#
-file_name = f"{protein}_distance.npy" # This contains the full dataset
+	protein="trpcage"
+	PROTEIN="TRPCAGE"
+	
+	#-----Path to training and testing data-----#
+	path_to_file = f"/home/data/STANDARD_TRAJECTORIES/DISTANCE_{PROTEIN}/"	
+	
+	#-----Load the training and testing data-----#
+	file_name = f"{protein}_distance.npy" # This contains the full dataset
 
 3. 
 #-----Scale the data-----#
