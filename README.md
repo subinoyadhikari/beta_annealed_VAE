@@ -100,7 +100,8 @@ Add these lines to a cell
 	
 	%matplotlib inline
 
-	protein="trpcage"
+2.
+ 	protein="trpcage"
 	PROTEIN="TRPCAGE"
 	
 	#-----Path to training and testing data-----#
@@ -110,12 +111,12 @@ Add these lines to a cell
 	file_name = f"{protein}_distance.npy" # This contains the full dataset
 
 3. 
-#-----Scale the data-----#
-scaler=Normalizer()
-#-----Load the distances-----#
-data=np.load(f"{path_to_file}{file_name}")
-#-----Scale the distances-----#
-data_scaled=scaler.fit_transform(data)
+	#-----Scale the data-----#
+	scaler=Normalizer()
+	#-----Load the distances-----#
+	data=np.load(f"{path_to_file}{file_name}")
+	#-----Scale the distances-----#
+	data_scaled=scaler.fit_transform(data)
 
 4. 
 full_data_tensor = torch.from_numpy(data_scaled.astype(np.float32))
