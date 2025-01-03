@@ -3,8 +3,8 @@ To train the model with your desired parameters, you need to modify changes in t
 
 
   # Protein
-	protein="trpcage" 
-	PROTEIN="TRPCAGE"  
+	protein="trpcage" # this is the name of the system and will be used for naming the filenames later
+	PROTEIN="TRPCAGE" # this is the name of the system (in uppercase) and will be used for naming the filenames later 
 	
   # Build the VAE network with desired architecture #
 	ENCODER_NEURONS = [190, 128, 64, 32, 16]
