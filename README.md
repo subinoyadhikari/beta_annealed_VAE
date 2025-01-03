@@ -1,1 +1,1 @@
-# beta_annealed_VAE
+# β Annealed VAE
