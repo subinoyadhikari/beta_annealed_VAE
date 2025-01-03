@@ -100,9 +100,8 @@ To train the model with your desired parameters, you need to modify changes in t
 	
 	%matplotlib inline
 
-   
 	#-----protein name-----#
- 	protein="trpcage"
+	protein="trpcage"
 	PROTEIN="TRPCAGE"
 	
 	#-----Path to training and testing data-----#
@@ -110,15 +109,15 @@ To train the model with your desired parameters, you need to modify changes in t
 	
 	#-----Load the training and testing data-----#
 	file_name = f"{protein}_distance.npy" # This contains the full dataset
-
-
+	
+	
 	#-----Scale the data-----#
 	scaler=Normalizer()
 	#-----Load the distances-----#
 	data=np.load(f"{path_to_file}{file_name}")
 	#-----Scale the distances-----#
 	data_scaled=scaler.fit_transform(data)
-
+	
 	#-----Convert numpy array to pytorch tensor-----#
 	full_data_tensor = torch.from_numpy(data_scaled.astype(np.float32))
 	full_loader = DataLoader(full_data_tensor, batch_size=len(data_scaled), shuffle=False)	
