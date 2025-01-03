@@ -100,7 +100,6 @@ To train the model with your desired parameters, you need to modify changes in t
 	
 	%matplotlib inline
 
-2. Open a jupyter notebook and add these lines to a cell
    
 	#-----protein name-----#
  	protein="trpcage"
