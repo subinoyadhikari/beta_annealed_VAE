@@ -6,11 +6,11 @@ To train the model with your desired parameters, you need to modify changes in t
 2. scikit-learn==1.4.2
 3. numpy==1.24.3
 
-  # Protein
+  # Protein (main.py)
 	protein="trpcage" # this is the name of the system and will be used for naming the filenames later
 	PROTEIN="TRPCAGE" # this is the name of the system (in uppercase) and will be used for naming the filenames later 
 	
-  # Build the VAE network with desired architecture #
+  # Build the VAE network with desired architecture # (main.py)
 	ENCODER_NEURONS = [190, 128, 64, 32, 16]
 	ENCODER_ACTIVATION = ['Tanh', 'Tanh', 'Tanh', 'Tanh', 'Tanh']
 
@@ -19,7 +19,7 @@ To train the model with your desired parameters, you need to modify changes in t
 
 	LATENT_DIM=2 # Latent dimension #
 
-  # Training parameters #
+  # Training parameters # (main.py)
 	USE_GPU=True
 	GPU_ID=5
 	TRAIN_BATCH_SIZE=5000
@@ -31,7 +31,7 @@ To train the model with your desired parameters, you need to modify changes in t
 	BETA=1.0
 	REC_LOSS_TYPE="mse"
 	
-  # Annealing parameters (only for model where you want to anneal the β parameter)
+  # Annealing parameters (only for model where you want to anneal the β parameter) (main.py)
 	USE_ANNEALING=True
 	NUM_CYCLES=1
 	SHAPE='cosine' # change the shape to 'linear' or 'logistic' as per your choice
@@ -40,7 +40,7 @@ To train the model with your desired parameters, you need to modify changes in t
 	FINAL_VALUE=1.0 # Final value of beta
 	FRACTION=1.0 # This value controls the epoch at which the beta reaches to the final value and remains there till the cycle ends.
 
- # Annealing parameters (only for general VAE model)
+ # Annealing parameters (only for general VAE model) (main.py)
 	USE_ANNEALING=False
 	NUM_CYCLES=-1
 	SHAPE=None
@@ -49,29 +49,29 @@ To train the model with your desired parameters, you need to modify changes in t
 	FINAL_VALUE=1.0
 	FRACTION=1.0 
 
-# Model directory name and model filename  (only for model where you want to anneal the β parameter)
+# Model directory name and model filename  (only for model where you want to anneal the β parameter) (main.py)
 	FILENAME_INIT=f"{protein}_a_{ALPHA}_b_{BETA}"	
 	MODEL_DIRECTORY=f"./model_params/"
 	MODEL_FILENAME=f"{FILENAME_INIT}_vaeban_shape_{SHAPE}_cycles_{NUM_CYCLES}_baseline_{BASELINE}_fval_{FINAL_VALUE}_batch_{TRAIN_BATCH_SIZE}_epochs_{NUM_EPOCHS}"
 	PTH=".pth"
  
-  # Model directory name and model filename (only for general VAE model)
+  # Model directory name and model filename (only for general VAE model) (main.py)
 	FILENAME_INIT=f"{protein}_a_{ALPHA}_b_{BETA}"	
 	MODEL_DIRECTORY=f"./model_params/"
  	MODEL_FILENAME=f"{FILENAME_INIT}_vae_batch_{TRAIN_BATCH_SIZE}_epochs_{NUM_EPOCHS}"
 	PTH=".pth"
 
-# Path to training and testing data
+# Path to training and testing data (main.py)
 	path_to_file = f"/path/to_training/and/validation/data/DISTANCE_{PROTEIN}/"	
 	
 	#-----Load the training and testing data-----#
 	train_data=np.load(path_to_file+f"X_train_{protein}.npy")
 	test_data=np.load(path_to_file+f"X_test_{protein}.npy")
-# Train the model
+# Train the model (terminal)
 1. Open a terminal and activate the conda environment that has pytorch
 2. Type: ./main.py and press Enter
 
-# Create the latent space
+# Create the latent space (jupyter notebook)
 Open a jupyter notebook and add these lines to a cell 
 
 	import os
