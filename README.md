@@ -51,7 +51,7 @@ To train the model with your desired parameters, you need to modify changes in t
 	MODEL_FILENAME=f"{FILENAME_INIT}_vaeban_shape_{SHAPE}_cycles_{NUM_CYCLES}_baseline_{BASELINE}_fval_{FINAL_VALUE}_batch_{TRAIN_BATCH_SIZE}_epochs_{NUM_EPOCHS}"
 	PTH=".pth"
  
-  # Model directory name and model filename that has to be saved (only for general VAE model)
+  # Model directory name and model filename (only for general VAE model)
 	FILENAME_INIT=f"{protein}_a_{ALPHA}_b_{BETA}"	
 	MODEL_DIRECTORY=f"./model_params/"
  	MODEL_FILENAME=f"{FILENAME_INIT}_vae_batch_{TRAIN_BATCH_SIZE}_epochs_{NUM_EPOCHS}"
