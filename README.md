@@ -71,7 +71,8 @@ To train the model with your desired parameters, you need to modify changes in t
 1. Open a jupyter notebook
 
 Add these lines to a cell 
- [1]
+
+1. 
 import os
 import sys
 import math
@@ -99,7 +100,7 @@ adjusted_rand_score, normalized_mutual_info_score
 
 %matplotlib inline
 
- [2]
+2. 
 protein="trpcage"
 PROTEIN="TRPCAGE"
 
@@ -109,7 +110,7 @@ path_to_file = f"/home/data/STANDARD_TRAJECTORIES/DISTANCE_{PROTEIN}/"
 #-----Load the training and testing data-----#
 file_name = f"{protein}_distance.npy" # This contains the full dataset
 
-[3]
+3. 
 #-----Scale the data-----#
 scaler=Normalizer()
 #-----Load the distances-----#
@@ -117,11 +118,11 @@ data=np.load(f"{path_to_file}{file_name}")
 #-----Scale the distances-----#
 data_scaled=scaler.fit_transform(data)
 
- [4]
+4. 
 full_data_tensor = torch.from_numpy(data_scaled.astype(np.float32))
 full_loader = DataLoader(full_data_tensor, batch_size=len(data_scaled), shuffle=False)	
 
- [5]
+5. 
 args=pickle.load(open("args.pkl", "rb"))
 
 #-----Create an instance of the dense_gmvae class-----#
@@ -130,10 +131,10 @@ model = dense_vae(args)
 #-----Load the saved model state dict-----#
 model.network.load_state_dict(torch.load(args['model_name']))
 
- [6]
+6. 
 saving_filename=f"latent_"+str(args['latent_dim'])+"_"+args['model_name'][15:-4]
 
-[7]
+7. 
 #-----Create the latent data (mean vector)-----#
 full_features = model.compute_latent(full_loader)[0]
 np.save(f"latent_data_{saving_filename}.npy", full_features)
