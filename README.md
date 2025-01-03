@@ -34,7 +34,7 @@ To train the model with your desired parameters, you need to modify changes in t
 	CYCLICAL=True 
 	BASELINE=0 # Initial value of beta
 	FINAL_VALUE=1.0 # Final value of beta
-	FRACTION=1.0 
+	FRACTION=1.0 # This value controls the epoch at which the beta reaches to the final value and remains there till the cycle ends.
 
  # Annealing parameters (only for general VAE model)
 	USE_ANNEALING=False
